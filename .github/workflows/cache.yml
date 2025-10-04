@@ -1,28 +1,24 @@
-name: Cache Example
+name: CI with Cache
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches: [ main ]
+  pull_request:
 
 jobs:
-  cache-test:
+  build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Cache dependencies
-        id: cache-step
+        id: cache
         uses: actions/cache@v4
         with:
-          path: ~/.cache
+          path: ~/.npm
           key: cache-f406759
 
       - name: prime-cache-f406759
-        run: |
-          if [ "${{ steps.cache-step.outputs.cache-hit }}" == "true" ]; then
-            echo "Cache hit"
-          else
-            echo "Cache miss"
-          fi
+        run: echo "Cache hit = ${{ steps.cache.outputs.cache-hit }}"
