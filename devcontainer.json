@@ -1,0 +1,17 @@
+{
+  "name": "ga2-f40e12",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astral-sh.uv",
+        "ms-python.python"
+      ]
+    }
+  },
+  "postCreateCommand": "python -m pip install --user uv && export PATH=\"$HOME/.local/bin:$PATH\" && uv pip install fastapi",
+  "remoteUser": "vscode"
+}
