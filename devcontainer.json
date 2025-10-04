@@ -12,6 +12,6 @@
       ]
     }
   },
-  "postCreateCommand": "python -m pip install --user uv && export PATH=\"$HOME/.local/bin:$PATH\" && uv pip install fastapi",
+  "postCreateCommand": "pip install uv && uv pip install fastapi",
   "remoteUser": "vscode"
 }
