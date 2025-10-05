@@ -1,9 +1,8 @@
-name: CI with Cache
+name: CI Cache Test
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main ]
-  pull_request:
 
 jobs:
   build:
@@ -14,11 +13,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Cache dependencies
-        id: cache
+        id: cache-deps
         uses: actions/cache@v4
         with:
-          path: ~/.npm
+          path: ~/.cache/pip
           key: cache-f406759
 
       - name: prime-cache-f406759
-        run: echo "Cache hit = ${{ steps.cache.outputs.cache-hit }}"
+        run: echo "Cache hit? ${{ steps.cache-deps.outputs.cache-hit }}"
