@@ -1,21 +1,20 @@
-# Verification number: 37435955
-def longest_positive_streak(nums: list[int]) -> int:
-    """
-    Calculates the length of the longest streak of positive numbers in a list.
+from typing import List
 
-    Args:
-        nums: A list of integers.
-
-    Returns:
-        The length of the longest streak of positive numbers.
+def longest_positive_streak(nums: List[int]) -> int:
     """
-    max_streak = 0
-    current_streak = 0
-    for num in nums:
-        if num > 0:
-            current_streak += 1
+    Returns the length of the longest run of consecutive positive (>0) values.
+    Empty list returns 0.
+    Non-positive numbers (<=0) reset the count.
+    """
+    longest = 0
+    current = 0
+
+    for n in nums:
+        if n > 0:
+            current += 1
+            if current > longest:
+                longest = current
         else:
-            max_streak = max(max_streak, current_streak)
-            current_streak = 0
-    max_streak = max(max_streak, current_streak)
-    return max_streak
+            current = 0
+
+    return longest
